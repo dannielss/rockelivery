@@ -7,6 +7,7 @@ defmodule Rockelivery.User do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:age, :address, :cep, :cpf, :email, :password, :name]
+  @update_params [:age, :address, :cep, :cpf, :email, :name]
 
   @derive {Jason.Encoder, only: [:id, :age, :cpf, :address, :email]}
 
@@ -23,10 +24,14 @@ defmodule Rockelivery.User do
     timestamps()
   end
 
-  def changeset(params) do
-    %__MODULE__{}
-    |> cast(params, @required_params)
-    |> validate_required(@required_params)
+  def changeset(params), do: fields_validation(%__MODULE__{}, @required_params, params)
+
+  def changeset(struct, params), do: fields_validation(struct, @update_params, params)
+
+  defp fields_validation(struct, fields, params) do
+    struct
+    |> cast(params, fields)
+    |> validate_required(fields)
     |> validate_length(:password, min: 6)
     |> validate_length(:cep, is: 8)
     |> validate_length(:cpf, is: 11)
