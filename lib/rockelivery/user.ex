@@ -9,7 +9,7 @@ defmodule Rockelivery.User do
   @required_params [:age, :address, :cep, :cpf, :email, :password, :name]
   @update_params [:age, :address, :cep, :cpf, :email, :name]
 
-  @derive {Jason.Encoder, only: [:id, :age, :cpf, :address, :email]}
+  @derive {Jason.Encoder, only: [:id, :age, :cpf, :address, :email, :name]}
 
   schema "users" do
     field :age, :integer
