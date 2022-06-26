@@ -15,7 +15,7 @@ defmodule Rockelivery.Users.CreateTest do
       assert {:ok, %User{id: _id, age: 21, email: "daniel@hotmail.com"}} = response
     end
 
-    test "it should returns an error, when there are invalid params" do
+    test "it should returns an error, when there is any invalid params" do
       params = build(:user_params, %{age: 15, password: "123"})
 
       response = Create.call(params)
