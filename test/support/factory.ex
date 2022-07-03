@@ -15,6 +15,15 @@ defmodule Rockelivery.Factory do
     }
   end
 
+  def item_params_factory do
+    %{
+      category: :drink,
+      description: "suco de laranja",
+      price: "15.00",
+      photo: "/priv/photos/random.jpg"
+    }
+  end
+
   def user_factory do
     %User{
       age: 21,
