@@ -4,10 +4,10 @@ defmodule Rockelivery.Item do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @required_params [:category, :desacription, :price, :photo]
+  @required_params [:category, :description, :price, :photo]
   @items_categories [:food, :drink, :desert]
 
-  @derive {Jason.Encoder, @required_params ++ [:id]}
+  @derive {Jason.Encoder, only: @required_params ++ [:id]}
 
   schema "items" do
     field :category, Ecto.Enum, values: @items_categories
