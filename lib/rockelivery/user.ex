@@ -27,6 +27,8 @@ defmodule Rockelivery.User do
     timestamps()
   end
 
+  def build(changeset), do: apply_action(changeset, :create)
+
   def changeset(params), do: fields_validation(%__MODULE__{}, @required_params, params)
 
   def changeset(struct, params), do: fields_validation(struct, @update_params, params)
